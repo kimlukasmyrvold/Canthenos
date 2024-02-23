@@ -1,7 +1,7 @@
 # Canthenos
 > Blazor website for viewing canteen data for a school. Project was made as a school assignment. 
 
-[![License](https://img.shields.io/badge/License-GPL-green)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![License](https://img.shields.io/badge/License-GPL-green)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ## How to run:
 1. clone the repository: ```git clone https://github.com/kimlukasmyrvold/Canthenos```
