@@ -1,0 +1,35 @@
+﻿@use "../base" as *;
+@use "../themes" as themeColor;
+
+button {
+    border: none;
+}
+
+button,
+.button-primary {
+    padding: .6em 1.25em;
+
+    color: map-get(themeColor.$dark, text);
+    background-color: var(--primary);
+
+    border-radius: 5px;
+    font-size: $p;
+    cursor: pointer;
+
+    transition: box-shadow .2s ease, translate .2s ease;
+
+
+    &:hover {
+        translate: 0 -3px;
+        box-shadow: 0 20px 80px -10px var(--primary);
+    }
+}
+
+.button-secondary {
+    color: var(--text);
+    background-color: var(--secondary);
+
+    &:hover {
+        box-shadow: none;
+    }
+}

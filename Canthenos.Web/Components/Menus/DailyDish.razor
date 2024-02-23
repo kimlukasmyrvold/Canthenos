@@ -1,0 +1,23 @@
+﻿<div class="dish">
+    <div class="dish__day">
+        <p class="day">@SelectedDay</p>
+    </div>
+
+    <DishRaw DishImage="pizza-pepperoni.jpg" DishName="Pepperoni Pizza" DishAllergies="Wheat, Milk, Celery" DishPrice="27.50" DishCurrency="" DishStat=""></DishRaw>
+</div>
+
+@code {
+
+    [Parameter] public string? SelectedDay { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (string.IsNullOrEmpty(SelectedDay))
+        {
+            SelectedDay = DateTime.Now.DayOfWeek.ToString();
+        }
+
+        base.OnInitialized();
+    }
+
+}

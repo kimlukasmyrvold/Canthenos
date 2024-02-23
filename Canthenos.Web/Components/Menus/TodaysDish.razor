@@ -1,0 +1,12 @@
+﻿<div class="todays_dish">
+    <p class="title">Today's Dish</p>
+    @* <Dish DishImage="pizza-pepperoni.jpg" DishName="Pepperoni Pizza" DishAllergies="Wheat, Milk, Celery" DishPrice="27.50" DishCurrency="" DishStat=""></Dish> *@
+    <DailyDish SelectedDay="@CurrentDay"></DailyDish>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? CurrentDay { get; set; }
+    
+}

@@ -1,0 +1,14 @@
+﻿@use "../../base" as *;
+
+.todays_dish {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+
+    .title {
+        font-size: $h4;
+        margin: 0;
+    }
+}

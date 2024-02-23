@@ -1,0 +1,51 @@
+﻿@use "../base" as *;
+
+.loginForm {
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin: 2.5em .5em;
+
+        &__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+            
+            border: 1px solid var(--text5);
+            border-radius: 10px;
+            background-color: var(--text5);
+            
+            padding: 2.5em 2em;
+
+            &__hero {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+                .title {
+                    font-size: $h4;
+                    margin: 0;
+                }
+            }
+
+            &__inputField {
+                display: flex;
+                flex-direction: column;
+                gap: 1em;
+
+                &__input {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .5em;
+                }
+            }
+            
+            &__submitField {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

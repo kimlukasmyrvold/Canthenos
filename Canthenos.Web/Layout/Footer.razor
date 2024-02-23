@@ -1,0 +1,39 @@
+﻿<footer class="footer">
+    <div class="footer__container">
+        
+        <div class="footer__container__content">
+
+            <div class="footer__container__content__top">
+                <div class="footer__container__content__top__brand">
+                    <p class="footer__container__content__top__brand__name">Canthenos</p>
+                </div>
+
+                <div class="footer__container__content__top__content">
+                    <p class="footer__container__content__top__content__repository">
+                        The code behind:
+                        <a href="http://github.com/kimlukasmyrvold/#404" target="_blank">GitHub</a>
+                    </p>
+                    
+                    <br>
+                    
+                    <small class="notice">Unless otherwise specified, all prices displayed on this website are in Norwegian Krone (NOK).</small>
+                </div>
+            </div>
+            
+            <hr>
+
+            <div class="footer__container__content__bottom">
+                <p class="footer__container__content__bottom__credit">Made by <a href="https://github.com/kimlukasmyrvold" target="_blank">Kim Lukas Myrvold</a></p>
+                <p class="footer__container__content__bottom__copyright">Copyright &COPY; @_year</p>
+            </div>
+            
+        </div>
+        
+    </div>
+</footer>
+
+@code {
+
+    private int _year = DateTime.Today.Year;
+
+}

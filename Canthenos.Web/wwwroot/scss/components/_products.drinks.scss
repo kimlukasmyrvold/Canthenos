@@ -1,0 +1,118 @@
+﻿@use "../base" as *;
+
+.products_drinks {
+    &__container {
+        .title {
+            font-size: $h4;
+        }
+
+        &__drink {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+            border: 1px solid var(--text5);
+            border-radius: 10px;
+            max-width: 250px;
+            aspect-ratio: 9 / 14;
+            position: relative;
+
+            background-color: var(--text5);
+
+            &__top {
+                border-radius: inherit;
+                position: relative;
+
+                &__text {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+
+                    padding: .5rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    background-color: hsl(var(--bgRaw) / .75);
+                    box-shadow: 0px -6px 25px 20px hsl(var(--bgRaw)/.85);
+
+                    .volume,
+                    .type {
+                        margin: 0;
+                        opacity: .85;
+                    }
+
+                }
+
+                &__cover {
+                    display: grid;
+                    place-items: center;
+                    border-radius: inherit;
+
+                    img {
+                        width: auto;
+                        max-height: 250px;
+                        border-radius: inherit;
+                        pointer-events: none;
+                    }
+
+                }
+
+            }
+
+            &__bottom {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                gap: 1em;
+                padding: 1em;
+                flex: 1;
+
+                //position: absolute;
+                //top: 0;
+                //bottom: 0;
+                //left: 0;
+                //right: 0;
+                //
+                //border-radius: inherit;
+                //background: linear-gradient(transparent, hsl(var(--bgRaw) / 1) 54%);
+
+                //background-color: var(--text5);
+
+                &__item {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .2rem;
+
+                    .name {
+                        font-size: $h5;
+                    }
+
+                    .flavor {
+                        opacity: .75;
+                    }
+
+                    .name,
+                    .flavor {
+                        margin: 0;
+                    }
+                }
+
+                &__price {
+                    display: flex;
+                    gap: .5rem;
+                    font-size: $h4;
+
+                    .amount,
+                    .currency {
+                        margin: 0;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+}

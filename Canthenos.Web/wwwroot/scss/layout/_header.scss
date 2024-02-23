@@ -1,0 +1,63 @@
+﻿@use '../abstracts' as *;
+
+.navbar {
+    position: sticky;
+    z-index: 999;
+    top: 0;
+    overflow-x: scroll;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5em;
+
+    @include padding-inline;
+    min-height: 50px;
+    
+    backdrop-filter: blur(50px);
+    background-color: hsla(var(--bgRaw), .95);
+    box-shadow: 0 0 0 1px hsl(0 0% 50% / .5);
+
+    &__brand__link {
+        $_size: 2rem;
+
+        text-decoration: none;
+        width: fit-content;
+
+        display: flex;
+        flex-direction: row;
+        gap: calc($_size / 2);
+
+        align-items: center;
+
+        &__logo {
+            height: $_size;
+        }
+
+        &__name {
+            font-size: $_size;
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: row;
+
+        &__content {
+            display: flex;
+            flex-direction: row;
+            gap: 2em;
+            font-size: 1.5rem;
+
+            &__link {
+                text-decoration-line: none;
+
+                &.active {
+                    text-decoration-line: underline;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+﻿@use "../../base" as *;
+
+.weekly_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    
+   
+    
+
+    &__container {
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+    }
+}

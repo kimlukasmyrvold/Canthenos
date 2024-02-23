@@ -1,0 +1,7 @@
+﻿@use "../abstracts" as *;
+
+.wrapper {
+    padding: 1.5em 5em;
+    @include padding-inline;
+    overflow-x: scroll;
+}

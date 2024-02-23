@@ -1,0 +1,69 @@
+﻿@use "../abstracts" as *;
+@use "typography" as *;
+@use "../themes" as themes;
+
+html {
+    scroll-padding-top: var(--_navbar-height, 50px);
+}
+
+html, body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: $fm;
+    font-size: $p;
+}
+
+img, svg {
+    font-style: italic;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    shape-margin: 1rem;
+
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+svg {
+    width: 1.75em;
+}
+
+a {
+    color: var(--text);
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+    transition: opacity .3s ease;
+
+    &:hover {
+        opacity: .6;
+    }
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    td, th {
+        padding: .5em;
+        border: 1px solid var(--text10);
+        text-align: left;
+    }
+
+    th {
+        background-color: var(--accent75);
+        color: map-get(themes.$light, text);
+    }
+
+    tr {
+        &:nth-of-type(odd) {
+            background-color: var(--text5);
+        }
+
+        &:hover {
+            background-color: var(--text10);
+        }
+    }
+}

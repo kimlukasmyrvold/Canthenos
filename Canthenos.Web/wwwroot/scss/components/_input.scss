@@ -1,0 +1,15 @@
+﻿@use "../base" as *;
+
+input {
+    font-size: $p;
+    padding: .75em;
+    border-radius: 5px;
+
+    background-color: transparent;
+    color: var(--text);
+    border: 1px solid var(--text5);
+    
+    &:focus-within {
+        outline: none;
+    }
+}

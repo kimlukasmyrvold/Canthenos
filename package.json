@@ -1,0 +1,16 @@
+{
+  "name": "canthenos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass -w Canthenos.Web/wwwroot/scss:Canthenos.Web/wwwroot/css --style=compressed",
+    "start": "cd Canthenos.Web && dotnet watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.71.1"
+  }
+}

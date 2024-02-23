@@ -1,0 +1,14 @@
+﻿#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    
+    .page {
+        flex: 1;
+
+        main {
+            margin-block: 1em;
+            display: grid;
+        }
+    }
+}

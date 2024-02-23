@@ -1,0 +1,56 @@
+﻿@use '../abstracts' as *;
+@use '../base' as *;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 2.5em;
+    @include padding-inline;
+    
+    &__container{
+        display: flex;
+        flex: 1;
+        
+        max-width: 900px;
+        
+        background-color: var(--text5);
+        border-radius: 10px;
+        padding: 1em 2.5em;
+        
+        &__content{
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 1em;
+            
+            &__top{
+                
+                &__brand {
+                    &__name {
+                        font-size: $h3;
+                    }
+                }
+                
+                &__content{
+                    &__repository {
+                        
+                    }
+                }
+            }
+            
+            hr {
+                width: 100%;
+            }
+            
+            &__bottom{
+                &__credit{
+                    
+                }
+                
+                &__copyright{
+                    font-size: $small;
+                }
+            }
+        }
+    }
+}

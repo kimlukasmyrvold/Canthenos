@@ -1,0 +1,14 @@
+﻿<div class="dish">
+    <DishRaw DishImage="@DishImage" DishName="@DishName" DishAllergies="@DishAllergies" DishPrice="@DishPrice" DishCurrency="@DishCurrency" DishStat="@DishStat"></DishRaw>
+</div>
+
+@code {
+
+    [Parameter] public string? DishImage { get; set; }
+    [Parameter] public string? DishName { get; set; }
+    [Parameter] public string? DishAllergies { get; set; }
+    [Parameter] public string? DishPrice { get; set; }
+    [Parameter] public string? DishCurrency { get; set; }
+    [Parameter] public string? DishStat { get; set; }
+
+}
