@@ -8,6 +8,20 @@ Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-
 
 ## [Unreleased]
 
+### Added
+
+- favicons, added one for dark, light and a default one.
+- favicon to _Layout.cshtml
+- script in header for changing favicon theme (dark / light)
+- logo to header
+- logo to footer
+
+### Changed
+
+- styling of footer `&__brand`
+- made weekly menu container center the dishes
+- decreases max width of dish component from 300px to 250px
+
 ## [0.0.1] - 2024-02-24
 
 ### Added
