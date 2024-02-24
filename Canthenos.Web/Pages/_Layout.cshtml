@@ -11,6 +11,9 @@
     <link href="css/main.css" rel="stylesheet"/>
     <title>Canthenos</title>
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
+    <link rel="icon" href="favicon-light.ico" id="light-scheme-icon">
+    <link rel="icon" href="favicon-dark.ico" id="dark-scheme-icon">
+    <script>const l=document.querySelector('link#light-scheme-icon');const d=document.querySelector('link#dark-scheme-icon');const m=window.matchMedia('(prefers-color-scheme: dark)');m.addEventListener('change',onUpdate);onUpdate();function onUpdate(){if(m.matches){l.remove();document.head.append(d)}else{document.head.append(l);d.remove()}}</script>
 </head>
 <body>
 <div id="app">
