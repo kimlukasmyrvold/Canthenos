@@ -1,21 +1,21 @@
 ﻿@use "mixins" as *;
 
 :root {
-    --spacing-inline: 5em;
+    --spacing-inline: 7.5em;
     
     @include respond-to('large') {
-        --spacing-inline: 5em;
+        --spacing-inline: 7.5em;
     }
 
     @include respond-to('medium') {
-        --spacing-inline: 3em;
+        --spacing-inline: 5em;
     }
 
     @include respond-to('small') {
-        --spacing-inline: 1em;
+        --spacing-inline: 2.5em;
     }
     
     @include respond-to('tiny') {
-        --spacing-inline: .25em;
+        --spacing-inline: 1em;
     }
 }
