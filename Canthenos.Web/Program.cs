@@ -1,8 +1,13 @@
+using Canthenos.DataAccessLibrary;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddTransient<IMenusData, MenusData>();
 
 var app = builder.Build();
 
