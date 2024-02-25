@@ -10,17 +10,31 @@ Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-
 
 ### Added
 
+- new dish images
+
+### Removed
+
+- old pepperoni pizza dish image
+
+## [0.1.0] - 2024-02-25
+
+### Added
+
 - favicons, added one for dark, light and a default one.
 - favicon to _Layout.cshtml
 - script in header for changing favicon theme (dark / light)
+- component for website brand, the logo and name
 - logo to header
 - logo to footer
 
 ### Changed
 
+- link to this github repo to proper link instead of placeholder link
 - styling of footer `&__brand`
 - made weekly menu container center the dishes
-- decreases max width of dish component from 300px to 250px
+- decreased max width of dish component from 300px to 250px
+- height of header
+- branding section of header and footer, now uses new branding component
 
 ## [0.0.1] - 2024-02-24
 
@@ -30,5 +44,6 @@ Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-
 - README file
 - GPL3.0 license 
 
-[unreleased]: https://github.com/kimlukasmyrvold/Canthenos/compare/v0.0.1...HEAD
+[unreleased]: https://github.com/kimlukasmyrvold/Canthenos/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.1.0
 [0.0.1]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.0.1
