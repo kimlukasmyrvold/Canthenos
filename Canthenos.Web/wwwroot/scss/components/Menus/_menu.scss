@@ -1,14 +1,19 @@
 ﻿@use "../../base" as *;
 
 .weekly_menu {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 3em;
 
     &__container {
-        display: flex;
-        justify-content: center;
-        gap: 1em;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 250px));
+        place-content: center;
+        gap: 1.5em 1em;
+        
+        @media (width <= 700px) {
+            display: flex;
+            flex-direction: column;
+            flex: 1 0 0;
+        }
     }
 }
