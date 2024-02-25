@@ -3,7 +3,7 @@
 @use "../themes" as themes;
 
 html {
-    scroll-padding-top: var(--_navbar-height, 50px);
+    scroll-padding-top: 60px;
 }
 
 html, body {
