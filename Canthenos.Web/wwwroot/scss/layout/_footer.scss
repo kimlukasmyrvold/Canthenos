@@ -24,21 +24,8 @@
             gap: 1em;
             
             &__top{
-                
                 &__brand {
-                    display: flex;
-                    align-items: center;
-                    gap: .75em;
                     margin-bottom: 2em;
-                    
-                    &__logo {
-                        width: 2.5em;
-                    }
-                    
-                    &__name {
-                        font-size: $h3;
-                        margin: 0;
-                    }
                 }
                 
                 &__content{
