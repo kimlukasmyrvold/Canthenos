@@ -1,56 +1,29 @@
 ﻿<div class="dish__image">
-    <img class="image" src="images/products/dishes/@DishImage" alt="Image of drink">
+    <img class="image" src="images/@DishImage" alt="Image of dish">
 </div>
 
 <div class="dish__bottom">
     <div class="dish__bottom__item">
         <p class="name">@DishName</p>
-        @if (!string.IsNullOrEmpty(DishAllergies))
-        {
-            <p class="allergies_container">Allergies: <span class="allergies">@DishAllergies</span></p>
-        }
+        <p class="allergies_container">Allergies: <span class="allergies">@(string.IsNullOrEmpty(DishAllergies) ? "N/A" : DishAllergies)</span></p>
     </div>
 
     <div class="dish__bottom__price">
-        @if (string.IsNullOrEmpty(DishPrice))
-        {
-            <p class="amount">N/A</p>
-        }
-        else
-        {
-            <p class="amount">@DishPrice</p>
-        }
-
-        @if (string.IsNullOrEmpty(DishCurrency))
-        {
-            <p class="currency">kr</p>
-        }
-        else
-        {
-            <p class="currency">@DishCurrency</p>
-        }
+        <p class="price">@(string.IsNullOrEmpty(DishPrice) ? "N/A" : DishPrice) @(string.IsNullOrEmpty(DishCurrency) ? "kr" : DishCurrency)</p>
     </div>
 
     <div class="dish__bottom__stats">
-        @if (string.IsNullOrEmpty(DishStat))
-        {
-            <p>Bought 0 times</p>
-        }
-        else
-        {
-            <p>Bought @DishStat times</p>
-        }
+        <p>Bought @(string.IsNullOrEmpty(DishStat) ? 0 : DishStat) times</p>
     </div>
 </div>
 
-
 @code {
-
+    
     [Parameter] public string? DishImage { get; set; }
     [Parameter] public string? DishName { get; set; }
     [Parameter] public string? DishAllergies { get; set; }
     [Parameter] public string? DishPrice { get; set; }
     [Parameter] public string? DishCurrency { get; set; }
     [Parameter] public string? DishStat { get; set; }
-
+    
 }

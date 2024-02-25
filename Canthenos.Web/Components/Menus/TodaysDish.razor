@@ -1,12 +1,21 @@
 ﻿<div class="todays_dish">
-    <p class="title">Today's Dish</p>
-    @* <Dish DishImage="pizza-pepperoni.jpg" DishName="Pepperoni Pizza" DishAllergies="Wheat, Milk, Celery" DishPrice="27.50" DishCurrency="" DishStat=""></Dish> *@
-    <DailyDish SelectedDay="@CurrentDay"></DailyDish>
+    <div class="todays_dish__container" onclick="
+         let siv = document.querySelector('#MenusDish@(CurrentDay)');
+         siv.scrollIntoView({behavior:'smooth'});
+         siv.style.transition = 'background-color .2s ease';
+         siv.style.background = 'var(--text35)';
+         setTimeout(() => {
+             siv.style.background='';
+         },2000);">
+        
+        <p class="title">Today's Dish</p>
+        <p class="dishName">@DishName</p>
+    </div>
 </div>
 
 @code {
 
-    [Parameter]
-    public string? CurrentDay { get; set; }
-    
+    [Parameter] public string? CurrentDay { get; set; }
+    [Parameter] public string? DishName { get; set; }
+
 }

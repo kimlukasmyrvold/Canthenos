@@ -1,13 +1,41 @@
-﻿<div class="weekly_menu">
-    <div class="weekly_menu__todays">
-        <TodaysDish></TodaysDish>
-    </div>
+﻿@using Canthenos.DataAccessLibrary
+@using Canthenos.DataAccessLibrary.Models
 
-    <div class="weekly_menu__container">
-        <DailyDish SelectedDay="Monday"></DailyDish>
-        <DailyDish SelectedDay="Tuesday"></DailyDish>
-        <DailyDish SelectedDay="Wednesday"></DailyDish>
-        <DailyDish SelectedDay="Thursday"></DailyDish>
-        <DailyDish SelectedDay="Friday"></DailyDish>
-    </div>
+@inject IMenusData Db
+
+<div class="weekly_menu">
+    @if (_menus is null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        <div class="weekly_menu__todays">
+            @foreach (var menu in _menus.Where(menu => menu.DayName == DateTime.Now.DayOfWeek.ToString()))
+            {
+                <TodaysDish CurrentDay="@menu.DayName" DishName="@menu.DishName"></TodaysDish>
+            }
+        </div>
+
+        <div class="weekly_menu__container">
+            @foreach (var menu in _menus)
+            {
+                <DailyDish SelectedDay="@menu.DayName" DishImage="@menu.DishImagePath" DishName="@menu.DishName" DishAllergies="" DishPrice="@menu.DishPrice" DishCurrency="" DishStat=""></DailyDish>
+            }
+        </div>
+    }
 </div>
+
+
+@code {
+
+    private List<MenusModel>? _menus;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _menus = await Db.GetMenus();
+    }
+
+}

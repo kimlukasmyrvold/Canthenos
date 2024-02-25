@@ -1,23 +1,20 @@
-﻿<div class="dish">
+﻿<div id="MenusDish@(SelectedDay)" class="dish">
     <div class="dish__day">
-        <p class="day">@SelectedDay</p>
+        <p class="day">@(string.IsNullOrEmpty(SelectedDay) ? DateTime.Now.DayOfWeek.ToString() : SelectedDay)</p>
     </div>
 
-    <DishRaw DishImage="pizza-pepperoni.jpg" DishName="Pepperoni Pizza" DishAllergies="Wheat, Milk, Celery" DishPrice="27.50" DishCurrency="" DishStat=""></DishRaw>
+    <DishRaw DishImage="@DishImage" DishName="@DishName" DishAllergies="@DishAllergies" DishPrice="@DishPrice" DishCurrency="@DishCurrency" DishStat="@DishStat"></DishRaw>
 </div>
 
 @code {
 
+    [Parameter] public string? DishImage { get; set; }
+    [Parameter] public string? DishName { get; set; }
+    [Parameter] public string? DishAllergies { get; set; }
+    [Parameter] public string? DishPrice { get; set; }
+    [Parameter] public string? DishCurrency { get; set; }
+    [Parameter] public string? DishStat { get; set; }
+
     [Parameter] public string? SelectedDay { get; set; }
-
-    protected override void OnInitialized()
-    {
-        if (string.IsNullOrEmpty(SelectedDay))
-        {
-            SelectedDay = DateTime.Now.DayOfWeek.ToString();
-        }
-
-        base.OnInitialized();
-    }
 
 }
