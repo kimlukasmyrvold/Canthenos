@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="wwwroot\scss\" />
   </ItemGroup>
 
@@ -21,6 +20,11 @@
     <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\font\fonts\open-iconic.woff" />
     <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\ICON-LICENSE" />
     <_ContentIncludedByDefault Remove="wwwroot\css\open-iconic\README.md" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\components\weeklyMenu.css.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Canthenos.DataAccessLibrary\Canthenos.DataAccessLibrary.csproj" />
   </ItemGroup>
 
 </Project>
