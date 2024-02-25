@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Canthenos.DataAccessLibrary;
 
-public class SqlDataAccess
+public class SqlDataAccess : ISqlDataAccess
 {
     private readonly IConfiguration _config;
 
