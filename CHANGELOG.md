@@ -8,6 +8,35 @@ Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-
 
 ## [Unreleased]
 
+This will be another minor release with lots of changes as well as new things.
+
+### Added
+
+- cancel button styling
+- new button styling for checkbox
+- new component for password toggle button
+- new models for creating new employee
+- component for viewing all employees from database
+- new folder for login related components
+- components for creating new employees
+- Brand, BrandLogo component
+- global theme file, this will store static colors
+- destructive color to global theme file
+- own scss component for table
+
+### Changed
+
+- split up BrandNameLogo component into three, one for just the brand name, one just for the brand logo and the third with both combined
+- naming of menus due to overhaul to database server. Column names had changed so the previous would no longer work.
+- almost entire database, should now be able to add orders so it will be possible to count the amount of times a product has been bought.
+- class naming of LoginForm component
+- styling for table, should be more responsive on smaller screens
+
+### Removed
+
+- old table styling from _base.scss component
+
+
 ## [0.2.0] - 2024-02-25
 
 This release makes the site actually connect to a database. It also brings in some more pictures and styling improvements.
