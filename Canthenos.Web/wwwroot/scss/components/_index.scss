@@ -1,11 +1,17 @@
 ﻿@forward "blazor";
-@forward "BrandNameLogo";
+
 @forward "button";
 @forward "input";
-@forward "loginForm";
-@forward "products";
-@forward "products.drinks";
-@forward "Menus/dish";
+@forward "tables";
+@forward "wrapper";
+@forward "dropdown";
+
+@forward "brand";
+@forward "login";
+
 @forward "Menus/menu";
 @forward "Menus/todaysDish";
-@forward "wrapper";
+@forward "Menus/dish";
+
+@forward "Products/products";
+@forward "Products/product";
