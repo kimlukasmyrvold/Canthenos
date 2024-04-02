@@ -1,0 +1,38 @@
+﻿@page "/Dashboard"
+@using Canthenos.Login
+
+@inject NavigationManager NavigationManager
+@inject IPassword Passwords
+
+<PageTitle>Dashboard</PageTitle>
+
+@if (_isLoggedIn)
+{
+    <div>
+        <h3>Dashboard</h3>
+        <p>Congratulations, you are logged in!</p>
+    </div>
+}
+
+
+@code {
+
+    private bool _isLoggedIn;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await HandleLogin();
+        }
+    }
+
+    private async Task HandleLogin()
+    {
+        var (loggedIn, roleId) = await Passwords.LoggedIn();
+        _isLoggedIn = loggedIn;
+        if (!_isLoggedIn) NavigationManager.NavigateTo("login", true);
+        StateHasChanged();
+    }
+
+}
