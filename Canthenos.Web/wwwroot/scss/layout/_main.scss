@@ -1,0 +1,13 @@
+﻿#app {
+    .page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+
+        main {
+            display: grid;
+            flex: 1;
+            padding-block: 1em;
+        }
+    }
+}
