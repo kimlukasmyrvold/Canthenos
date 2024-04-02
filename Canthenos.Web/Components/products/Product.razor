@@ -1,0 +1,42 @@
+﻿<div class="product" data-productType="@Type">
+
+    <div class="product__image">
+        <img src="images/@Image" alt="Image of @Name" loading="lazy">
+    </div>
+
+    <div class="product__bottom">
+        <div class="product__bottom__item">
+            <p class="name">@Name</p>
+            <div class="product__bottom__item__info">
+                <p class="description">@Description</p>
+                @if (Type == "Dish")
+                {
+                    <p class="allergies_container">Allergies: <span class="allergies">@(string.IsNullOrEmpty(Allergies) ? "N/A" : Allergies)</span></p>
+                }
+            </div>
+        </div>
+
+        <div class="product__bottom__price">
+            <p class="price">@(string.IsNullOrEmpty(Price) ? "N/A" : Price) @(string.IsNullOrEmpty(Currency) ? "kr" : Currency)</p>
+        </div>
+
+        <div class="product__bottom__stats">
+            <p>Bought @(string.IsNullOrEmpty(Bought) ? 0 : int.Parse(Bought) > 999 ? "999+" : Bought) times</p>
+        </div>
+    </div>
+
+</div>
+
+@code {
+
+    [Parameter] public string? Type { get; set; }
+
+    [Parameter] public string? Image { get; set; }
+    [Parameter] public string? Name { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public string? Allergies { get; set; }
+    [Parameter] public string? Price { get; set; }
+    [Parameter] public string? Currency { get; set; }
+    [Parameter] public string? Bought { get; set; }
+
+}
