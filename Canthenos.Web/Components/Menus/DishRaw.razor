@@ -1,6 +1,9 @@
-﻿<div class="dish__image">
-    <img class="image" src="images/@DishImage" alt="Image of dish">
-</div>
+﻿@if (DishImage is not null)
+{
+    <div class="dish__image">
+        <img class="image" src="images/@DishImage" alt="Image of dish">
+    </div>
+}
 
 <div class="dish__bottom">
     <div class="dish__bottom__item">
@@ -18,12 +21,13 @@
 </div>
 
 @code {
-    
+
     [Parameter] public string? DishImage { get; set; }
     [Parameter] public string? DishName { get; set; }
     [Parameter] public string? DishAllergies { get; set; }
     [Parameter] public string? DishPrice { get; set; }
     [Parameter] public string? DishCurrency { get; set; }
     [Parameter] public string? DishStat { get; set; }
-    
+
 }
+
