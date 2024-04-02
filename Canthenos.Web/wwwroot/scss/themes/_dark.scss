@@ -4,13 +4,11 @@
         primary: hsl(229, 95%, 40%),
         secondary: hsl(243, 45%, 35%),
         accent: hsl(177, 71%, 55%),
-
         textRaw: 243 61% 94%,
         bgRaw: 240 70% 4%,
         primaryRaw: 229 95% 40%,
         secondaryRaw: 243 45% 35%,
         accentRaw: 177 71% 55%,
-
         text5: hsl(243 61% 94% / 5%),
         text10: hsl(243 61% 94% / 10%),
         text15: hsl(243 61% 94% / 15%),
@@ -30,7 +28,6 @@
         text85: hsl(243 61% 94% / 85%),
         text90: hsl(243 61% 94% / 90%),
         text95: hsl(243 61% 94% / 95%),
-
         bg5: hsl(240 70% 4% / 5%),
         bg10: hsl(240 70% 4% / 10%),
         bg15: hsl(240 70% 4% / 15%),
@@ -50,7 +47,6 @@
         bg85: hsl(240 70% 4% / 85%),
         bg90: hsl(240 70% 4% / 90%),
         bg95: hsl(240 70% 4% / 95%),
-
         primary5: hsl(229 95% 40% / 5%),
         primary10: hsl(229 95% 40% / 10%),
         primary15: hsl(229 95% 40% / 15%),
@@ -70,7 +66,6 @@
         primary85: hsl(229 95% 40% / 85%),
         primary90: hsl(229 95% 40% / 90%),
         primary95: hsl(229 95% 40% / 95%),
-
         secondary5: hsl(243 45% 35% / 5%),
         secondary10: hsl(243 45% 35% / 10%),
         secondary15: hsl(243 45% 35% / 15%),
@@ -90,7 +85,6 @@
         secondary85: hsl(243 45% 35% / 85%),
         secondary90: hsl(243 45% 35% / 90%),
         secondary95: hsl(243 45% 35% / 95%),
-
         accent5: hsl(177 71% 55% / 5%),
         accent10: hsl(177 71% 55% / 10%),
         accent15: hsl(177 71% 55% / 15%),
@@ -114,8 +108,8 @@
 
 :root {
     $_themeName: dark;
-    
-    &[data-theme=#{$_themeName}] {
+
+    &[theme=#{$_themeName}] {
         @each $property, $value in $dark {
             --#{$property}: #{$value};
         }

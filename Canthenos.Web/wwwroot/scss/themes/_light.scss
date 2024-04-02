@@ -115,7 +115,7 @@
 :root {
     $_themeName: light;
     
-    &[data-theme=#{$_themeName}] {
+    &[theme=#{$_themeName}] {
         @each $property, $value in $light {
             --#{$property}: #{$value};
         }
