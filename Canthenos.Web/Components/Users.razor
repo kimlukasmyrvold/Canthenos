@@ -1,0 +1,64 @@
+﻿@using Canthenos.DataAccessLibrary.Models
+@using Canthenos.DataAccessLibrary
+
+@inject IUsersData Db
+
+<div class="breakout">
+    @if (_users is null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        <div class="table_container">
+            <table role="table" class="un_table">
+                <caption role="caption">
+                    <p>List of all users</p>
+                </caption>
+                <thead role="rowgroup">
+                <tr role="row">
+                    <th data-cell="Id" role="columnheader">Id</th>
+                    <th data-cell="Role" role="columnheader">Role</th>
+                    <th data-cell="First Name" role="columnheader">First Name</th>
+                    <th data-cell="Last Name" role="columnheader">Last Name</th>
+                    <th data-cell="Username" role="columnheader">Username</th>
+                    <th data-cell="Salt" role="columnheader">Salt</th>
+                    <th data-cell="Hash" role="columnheader">Hash</th>
+                    <th data-cell="Created At" role="columnheader" class="hide_on_tablet">Created At</th>
+                    <th data-cell="Updated At" role="columnheader" class="hide_on_tablet">Updated At</th>
+                </tr>
+                </thead>
+                <tbody role="rowgroup">
+                @foreach (var user in _users)
+                {
+                    <tr role="row">
+                        <td data-cell="Id" role="cell">@user.UserId</td>
+                        <td data-cell="Role" role="cell">@user.RoleName</td>
+                        <td data-cell="First Name" role="cell">@user.FirstName</td>
+                        <td data-cell="Last Name" role="cell">@user.LastName</td>
+                        <td data-cell="Username" role="cell">@user.Username</td>
+                        <td data-cell="Salt" role="cell">@user.Salt</td>
+                        <td data-cell="Hash" role="cell">@user.Hash</td>
+                        <td data-cell="Created At" role="cell" class="hide_on_tablet">@user.FormattedCreatedAt</td>
+                        <td data-cell="Updated At" role="cell" class="hide_on_tablet">@user.FormattedUpdatedAt</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+
+@code {
+
+    private List<UsersModel>? _users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _users = await Db.GetUsers(2);
+    }
+
+}
