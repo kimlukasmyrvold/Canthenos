@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Canthenos.DataAccessLibrary\Canthenos.DataAccessLibrary.csproj" />
+    <ProjectReference Include="..\Canthenos.Login\Canthenos.Login.csproj" />
   </ItemGroup>
 
 </Project>
