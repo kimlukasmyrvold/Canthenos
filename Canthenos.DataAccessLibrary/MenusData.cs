@@ -13,8 +13,11 @@ public class MenusData : IMenusData
 
     public Task<List<MenusModel>> GetMenus()
     {
-        const string sql = "select * from ViewMenusAdvanced order by DayId;";
+        const int menuId = 1;
+        const string sql = "select * from ViewMenus where MenuId=@MenuId order by DayId;";
 
-        return _db.LoadData<MenusModel, dynamic>(sql, new { });
+        var parameters = new { MenuId = menuId };
+
+        return _db.LoadData<MenusModel, dynamic>(sql, parameters);
     }
 }
