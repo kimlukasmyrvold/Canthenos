@@ -1,0 +1,49 @@
+﻿@using Canthenos.DataAccessLibrary
+@using Canthenos.Login
+@inject NavigationManager NavigationManager;
+@inject IUsersData UsersData
+@inject IPassword Password
+@inject ICookies Cookies
+
+@if (_isLoggedIn)
+{
+    <NavLink class="navbar__links__content__link" href="Dashboard" Match="NavLinkMatch.All">
+        Dashboard
+    </NavLink>
+    <button class="navbar__links__content__link" @onclick="Logout">Logout</button>
+}
+else
+{
+    <button class="navbar__links__content__link" @onclick="Login">Login</button>
+}
+
+
+@code {
+
+    private bool _isLoggedIn = false;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var (loggedIn, _) = await Password.LoggedIn();
+            _isLoggedIn = loggedIn;
+            StateHasChanged();
+        }
+    }
+
+    private void Login()
+    {
+        NavigationManager.NavigateTo("login", true);
+    }
+
+    private async Task Logout()
+    {
+        var token = await Cookies.ReadCookie("session-token");
+        await UsersData.RevokeSessionToken(token);
+        _isLoggedIn = false;
+        StateHasChanged();
+        NavigationManager.NavigateTo("login", true);
+    }
+    
+}
