@@ -6,46 +6,47 @@
     justify-content: center;
     padding: 2.5em;
     @include padding-inline;
-    
-    &__container{
+
+    &__container {
         display: flex;
         flex: 1;
-        
-        max-width: 900px;
-        
+
+        max-width: 1000px;
+
         background-color: var(--text5);
         border-radius: 10px;
-        padding: 1em 2.5em;
-        
-        &__content{
+        padding: 2.5em;
+
+        &__content {
             display: flex;
             flex-direction: column;
             flex: 1;
             gap: 1em;
-            
-            &__top{
+
+            &__top {
                 &__brand {
                     margin-bottom: 2em;
-                }
-                
-                &__content{
-                    &__repository {
-                        
+
+                    .brand_component {
+                        --size: #{$h3};
                     }
                 }
             }
-            
+
             hr {
                 width: 100%;
             }
-            
-            &__bottom{
-                &__credit{
-                    
+
+            &__bottom {
+                &__credit,
+                &__copyright,
+                &__license,
+                &__open_source {
+                    margin: .5em 0;
                 }
-                
-                &__copyright{
-                    font-size: $small;
+
+                &__credit {
+                    margin-bottom: 1em;
                 }
             }
         }
