@@ -1,0 +1,117 @@
+﻿@use "../base" as *;
+@use "../themes" as themes;
+
+.table_container {
+    height: min-content;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    $br: 5px;
+
+    background-color: var(--text5);
+    border-radius: $br;
+    border-spacing: 0;
+    width: 100%;
+
+    caption, th, td {
+        padding: .75rem;
+        text-align: left;
+    }
+
+    caption {
+        font-size: $h5;
+        font-weight: 600;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    th, td {
+        border: 1px solid var(--text10);
+    }
+
+    th {
+        background-color: var(--accent75);
+        color: map-get(themes.$light, text);
+    }
+
+    & th:first-child {
+        border-top-left-radius: $br;
+    }
+
+    & th:last-child {
+        border-top-right-radius: $br;
+    }
+
+    & tr:last-child td:first-child {
+        border-bottom-left-radius: $br;
+    }
+
+    & tr:last-child td:last-child {
+        border-bottom-right-radius: $br;
+    }
+
+    .hide_on_mobile {
+        @media only screen and (width <= 767px) {
+            display: none;
+        }
+    }
+
+    .hide_on_tablet {
+        @media (width <= 1024px) {
+            display: none;
+        }
+    }
+
+    .hide_on_desktop {
+        display: none;
+
+        @media (width <= 767px) {
+            display: table-cell;
+        }
+    }
+
+    tr {
+        &:nth-of-type(2n) td {
+            background-color: var(--text5);
+        }
+
+        &:hover td {
+            background-color: var(--text10);
+        }
+    }
+
+    &.un_table tr {
+        @media (width <= 600px) {
+
+            th {
+                display: none !important;
+            }
+
+            td {
+                display: grid;
+                gap: .5rem;
+                border: none;
+
+                &::before {
+                    content: attr(data-cell) ": ";
+                    font-weight: 600;
+                }
+
+                $_padding: 1.5rem;
+
+                &:first-child {
+                    padding-top: $_padding;
+                }
+
+                &:last-child {
+                    padding-bottom: $_padding;
+                }
+            }
+
+        }
+    }
+}
