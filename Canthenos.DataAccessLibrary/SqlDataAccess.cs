@@ -9,28 +9,42 @@ public class SqlDataAccess : ISqlDataAccess
 {
     private readonly IConfiguration _config;
 
-    private string ConnectionStringName { get; set; } = "Default";
-
     public SqlDataAccess(IConfiguration config)
     {
         _config = config;
+        new DotEnv().Load(Path.Combine(Directory.GetCurrentDirectory(), ".env"));
     }
+
+    private static string ConnectionStringName => "DEFAULT_CONNECTION";
 
     public async Task<List<T>> LoadData<T, TU>(string sql, TU parameters)
     {
-        var connectionString = _config.GetConnectionString(ConnectionStringName);
+        var connectionString = Environment.GetEnvironmentVariable(ConnectionStringName);
 
         using IDbConnection connection = new SqlConnection(connectionString);
-        var data = await connection.QueryAsync<T>(sql, parameters);
-
-        return data.ToList();
+        try
+        {
+            return (await connection.QueryAsync<T>(sql, parameters)).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error, something went wrong when trying to get data from database: {ex.Message}");
+            return new List<T>();
+        }
     }
 
     public async Task SaveData<T>(string sql, T parameters)
     {
-        var connectionString = _config.GetConnectionString(ConnectionStringName);
-
+        var connectionString = Environment.GetEnvironmentVariable(ConnectionStringName);
+        
         using IDbConnection connection = new SqlConnection(connectionString);
-        await connection.ExecuteAsync(sql, parameters);
+        try
+        {
+            await connection.ExecuteAsync(sql, parameters);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error, something went wrong when trying to send data to database: {ex.Message}");
+        }
     }
 }
