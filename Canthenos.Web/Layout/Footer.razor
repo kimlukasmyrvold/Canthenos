@@ -1,4 +1,7 @@
-﻿<footer class="footer">
+﻿@using Canthenos.DataAccessLibrary
+@inject IGithubData GithubData
+
+<footer class="footer">
     <div class="footer__container">
 
         <div class="footer__container__content">
@@ -9,13 +12,6 @@
                 </div>
 
                 <div class="footer__container__content__top__content">
-                    <p class="footer__container__content__top__content__repository">
-                        The code behind:
-                        <a href="https://github.com/kimlukasmyrvold/Canthenos" target="_blank">GitHub</a>
-                    </p>
-
-                    <br>
-
                     <small class="notice">Unless otherwise specified, all prices displayed on this website are in Norwegian Krone (NOK).</small>
                 </div>
             </div>
@@ -23,8 +19,15 @@
             <hr>
 
             <div class="footer__container__content__bottom">
-                <p class="footer__container__content__bottom__credit">Made by <a href="https://github.com/kimlukasmyrvold" target="_blank">Kim Lukas Myrvold</a></p>
-                <p class="footer__container__content__bottom__copyright">Copyright &COPY; @_year</p>
+                <p class="footer__container__content__bottom__credit">This website was made by <a href="https://github.com/kimlukasmyrvold" target="_blank">Kim Lukas Myrvold</a></p>
+                <p>
+                    <span class="footer__container__content__bottom__copyright">Copyright &COPY; @DateTime.Today.Year</span>
+                    <span class="footer__container__content__bottom__license">
+                        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">Licensed with GNU General Public License v3.0</a>
+                    </span>
+                </p>
+                <p class="footer__container__content__bottom__open_source">This website is open-source, check out the code here: <a href="https://github.com/kimlukasmyrvold/Canthenos" target="_blank">GitHub</a></p>
+                <small class="footer__container__content__bottom__version"><a href="@CurrentVersionLink" target="_blank">Version: @CurrentVersion</a></small>
             </div>
 
         </div>
@@ -34,6 +37,12 @@
 
 @code {
 
-    private int _year = DateTime.Today.Year;
+    private string? CurrentVersion { get; set; }
+    private string? CurrentVersionLink { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        (CurrentVersionLink, CurrentVersion) = await GithubData.GetLatestVersion();
+    }
 
 }
