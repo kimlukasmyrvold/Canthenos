@@ -1,15 +1,20 @@
 ﻿<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)"/>
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(Main)"/>
         <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <div class="wrapper">
-                <h1>404</h1>
-                <p role="alert">Sorry, there's nothing at this address.</p>
-                <button onclick="window.history.back()">Go Back</button>
+        <LayoutView Layout="@typeof(Main)">
+            <div class="not_found">
+                <div class="container">
+                    <h1 class="title">404</h1>
+                    <p class="heading" role="alert">Sorry, there's nothing at this address.</p>
+                    
+                    <div class="buttons">
+                        <button onclick="window.history.back()">Go Back</button>
+                    </div>
+                </div>
             </div>
         </LayoutView>
     </NotFound>
