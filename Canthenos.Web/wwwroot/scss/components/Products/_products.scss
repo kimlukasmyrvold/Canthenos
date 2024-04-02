@@ -1,0 +1,77 @@
+@use "../../abstracts" as *;
+@use "../../base" as *;
+
+.allProducts {
+    width: 100%;
+
+    &__container {
+
+        .products {
+            margin-block: 2.5em 5em;
+
+            &__container {
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 1em;
+                margin-block: 1em;
+
+                @media only screen and (width <= 1200px) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+
+                &__aside {
+                    grid-column: 1/3;
+                    width: 100%;
+
+                    &__title {
+                        font-size: $h4;
+                        font-weight: 600;
+                        margin: 0 0 .5em;
+                        padding: 0 0 .25em;
+                        width: 100%;
+                        border-bottom: 1px solid var(--text10);
+                    }
+
+                    &__options {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 1em;
+                        margin-bottom: 1em;
+                        width: min-content;
+                        
+                        @media only screen and (width >= 1200px) {
+                            width: 100%;
+                        } 
+                        
+                        @media only screen and (width <= 1200px) {
+                            flex-direction: row;
+                            align-items: center;
+                        }
+
+                        &__sort_by,
+                        &__category {
+                            width: 100%;
+                            white-space: nowrap;
+                        }
+                    }
+
+                }
+
+                &__content {
+                    grid-column: 3/13;
+
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, 250px);
+                    gap: 1em;
+                    width: 100%;
+                }
+
+            }
+        }
+
+    }
+}
