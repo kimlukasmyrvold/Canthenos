@@ -15,14 +15,14 @@
         <div class="weekly_menu__todays">
             @foreach (var menu in _menus.Where(menu => menu.DayName == DateTime.Now.DayOfWeek.ToString()))
             {
-                <TodaysDish CurrentDay="@menu.DayName" DishName="@menu.DishName"></TodaysDish>
+                <TodaysDish CurrentDay="@menu.DayName" DishName="@menu.Name"></TodaysDish>
             }
         </div>
 
         <div class="weekly_menu__container">
             @foreach (var menu in _menus)
             {
-                <DailyDish SelectedDay="@menu.DayName" DishImage="@menu.DishImagePath" DishName="@menu.DishName" DishAllergies="" DishPrice="@menu.DishPrice" DishCurrency="" DishStat=""></DailyDish>
+                <DailyDish SelectedDay="@menu.DayName" DishImage="@menu.ImagePath" DishName="@menu.Name" DishAllergies="" DishPrice="@menu.Price" DishCurrency="" DishStat=""></DailyDish>
             }
         </div>
     }
