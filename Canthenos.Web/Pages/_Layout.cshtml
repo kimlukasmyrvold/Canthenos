@@ -8,7 +8,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <base href="~/"/>
-    <link href="css/main.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet" preload/>
     <title>Canthenos</title>
     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered"/>
     <link rel="icon" href="favicon-light.ico" id="light-scheme-icon">
@@ -35,11 +35,11 @@
         </div>
 
         <div class="blazor_error_ui__dismiss">
-            <a class="dismiss">
+            <button class="dismiss button-nofancy">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <title>close</title><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
                 </svg>
-            </a>
+            </button>
         </div>
     </div>
 </div>
