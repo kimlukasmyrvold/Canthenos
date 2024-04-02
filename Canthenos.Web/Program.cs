@@ -1,3 +1,4 @@
+using Canthenos.Login;
 using Canthenos.DataAccessLibrary;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,8 +7,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddTransient<IPassword, Password>();
+
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+
+builder.Services.AddTransient<IGithubData, GithubData>();
+builder.Services.AddTransient<ICookies, Cookies>();
+
+builder.Services.AddTransient<IUsersData, UsersData>();
 builder.Services.AddTransient<IMenusData, MenusData>();
+builder.Services.AddTransient<IDrinksData, DrinksData>();
+builder.Services.AddTransient<ISnacksData, SnacksData>();
+builder.Services.AddTransient<IDishesData, DishesData>();
 
 var app = builder.Build();
 
