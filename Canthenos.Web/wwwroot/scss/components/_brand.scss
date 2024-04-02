@@ -1,0 +1,22 @@
+﻿@use "../base" as *;
+
+.brand_component {
+    --size: #{$h4};
+    
+    &__link {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: .5em;
+        
+        text-decoration: none;
+    }
+
+    &__logo {
+        width: calc(var(--size) * 1.5);
+    }
+
+    &__name {
+        font-size: var(--size);
+    }
+}
