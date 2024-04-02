@@ -5,4 +5,36 @@
     Layout = "_Layout";
 }
 
-<component type="typeof(App)" render-mode="ServerPrerendered" />
+<component type="typeof(App)" render-mode="ServerPrerendered"/>
+
+<script>
+    window.WriteCookie = {
+        WriteCookie: function (name, value, expires) {
+            document.cookie = `${name} = ${value}; expires = ${new Date(expires).toUTCString()}; path=/; SameSite=Strict; Secure"`;
+        }
+    }
+    
+    window.ReadCookie = {
+        ReadCookie: function (cname) {
+            const name = cname + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            
+            const ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                
+                while (c.charAt(0) === ' ') {
+                    c = c.substring(1);
+                }
+                
+                if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
+            }
+            
+            return "";
+        }
+    }
+    
+    window.getUserAgent = () => {
+        return navigator.userAgent;
+    };
+</script>
