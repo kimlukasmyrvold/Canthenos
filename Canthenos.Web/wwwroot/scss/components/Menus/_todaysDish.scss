@@ -4,27 +4,56 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    min-height: 250px;
+
     &__container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        transition: color .3s ease;
 
-        p {
-            margin: 0;
-            margin-block-end: .25em;
-            text-transform: capitalize;
-            text-align: center;
+        @media (width >= 700px) {
+            &:hover {
+                color: var(--text75);
+            }
+
+            &:hover &__dish::after {
+                scale: 1;
+                transform-origin: left;
+            }
         }
 
-        .title {
+        &__heading,
+        &__dish {
+            text-transform: capitalize;
+            text-align: center;
+            margin: 0 0 .25em;
+        }
+
+        &__heading {
             font-size: $h4;
         }
 
-        .dishName {
+        &__dish {
             font-size: $h2;
+            position: relative;
+            isolation: isolate;
+
+            &::after {
+                content: '';
+                position: absolute;
+                z-index: -1;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 2px;
+                background-color: var(--accent);
+                transform-origin: right;
+                scale: 0 1;
+                transition: scale .3s ease;
+            }
         }
     }
 }

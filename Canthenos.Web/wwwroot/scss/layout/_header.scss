@@ -5,7 +5,7 @@
     position: sticky;
     z-index: 999;
     top: 0;
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 100%;
 
     display: flex;
@@ -18,8 +18,8 @@
     height: 60px;
     
     backdrop-filter: blur(50px);
-    background-color: hsla(var(--bgRaw), .95);
-    box-shadow: 0 0 0 1px hsl(0 0% 50% / .5);
+    background-color: var(--bg50);
+    box-shadow: 0 0 0 1px hsla(0 0% 50% / .5);
     
     &__links {
         display: flex;
@@ -28,14 +28,21 @@
         &__content {
             display: flex;
             flex-direction: row;
-            gap: 2em;
+            gap: .5em;
             font-size: 1.5rem;
 
             &__link {
                 text-decoration-line: none;
+                transition: opacity .3s ease;
 
                 &.active {
                     text-decoration-line: underline;
+                }
+                
+                &:hover {
+                    translate: none;
+                    box-shadow: none;
+                    opacity: .75;
                 }
             }
         }
