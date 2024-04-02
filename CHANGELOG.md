@@ -8,33 +8,57 @@ Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-
 
 ## [Unreleased]
 
-This will be another minor release with lots of changes as well as new things.
+Nothing unreleased yet
+
+## [0.3.0] - 2024-04-02
+
+This will be another mayor release with lots of changes as well as new things.
 
 ### Added
 
 - cancel button styling
 - new button styling for checkbox
+- new button styling for radio
 - new component for password toggle button
-- new models for creating new employee
-- component for viewing all employees from database
+- new models for creating new user
+- component for viewing all users from database
 - new folder for login related components
-- components for creating new employees
+- components for creating new users
 - Brand, BrandLogo component
 - global theme file, this will store static colors
 - destructive color to global theme file
 - own scss component for table
+- .env template file
+- website version to bottom of footer
+- license info to footer
+- class for managing .env file
+- class for handling of cookies (read/write)
+- file for getting the latest github version for this project
+- custom styling for scrollbar
+- styling for information container
+- styling for page not found
+- images for dishes, drinks and snacks
+- component for loading circle
+- component for dropdowns
 
 ### Changed
 
 - split up BrandNameLogo component into three, one for just the brand name, one just for the brand logo and the third with both combined
 - naming of menus due to overhaul to database server. Column names had changed so the previous would no longer work.
-- almost entire database, should now be able to add orders so it will be possible to count the amount of times a product has been bought.
+- almost entire database, should now be able to add orders so it will be possible to count the amount of times a product ha been bought.
 - class naming of LoginForm component
 - styling for table, should be more responsive on smaller screens
+- moved connection string from appsettings.json to .env
+- increased max width of footer
+- moved code behind section of footer down to copyright section
+- wrapper class, instead of putting wrapper on each element it is now on <main> element
+- renamed MainLayout.razor to Main.razor
 
 ### Removed
 
 - old table styling from _base.scss component
+- appsettings.template.json
+- gitignore for appsettings.json
 
 
 ## [0.2.0] - 2024-02-25
@@ -87,7 +111,8 @@ This release makes the site actually connect to a database. It also brings in so
 - README file
 - GPL3.0 license 
 
-[unreleased]: https://github.com/kimlukasmyrvold/Canthenos/compare/v0.2.0...HEAD
+[unreleased]: https://github.com/kimlukasmyrvold/Canthenos/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.3.0
 [0.2.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.2.0
 [0.1.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.1.0
 [0.0.1]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.0.1
