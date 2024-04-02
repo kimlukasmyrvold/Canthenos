@@ -1,0 +1,69 @@
+﻿<div class="dropdown" data-active="@_active.ToString()" tabindex="0" @onclick="Click" @onfocusin="() => Focus()" @onfocusout="() => Focus(1)">
+    <div class="dropdown__display">
+        <span>@Placeholder</span>
+    </div>
+
+    <div class="dropdown__options">
+        @if (Options is null)
+        {
+            <p>
+                <em>Loading...</em>
+            </p>
+        }
+        else
+        {
+            @foreach (var option in Options)
+            {
+                <button class="dropdown__options__option"
+                        data-active="@(_selected == option.Key ? "True" : "False")"
+                        tabindex="@(_active ? 0 : -1)"
+                        @onclick="() => ChangeOption(option.Key)">
+                    @option.Value
+                </button>
+            }
+        }
+
+        @* @ChildContent *@
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public Dictionary<int, string>? Options { get; set; }
+    [Parameter] public EventCallback<int> Chosen { get; set; }
+
+    private bool _active;
+    private int _state;
+    private int _selected;
+
+
+    private async Task ChangeOption(int option)
+    {
+        if (option == _selected) return;
+        _selected = option;
+        _active = false;
+        
+        await Chosen.InvokeAsync(_selected);
+    }
+
+
+    private void Focus(int state = 0)
+    {
+        _active = state == 0;
+        _state = state;
+    }
+
+    private void Click()
+    {
+        if (_state == 2)
+        {
+            _state = 2;
+            _active = !_active;
+        }
+
+        if (_state != 0) return;
+        _state = 2;
+    }
+
+}
