@@ -1,0 +1,47 @@
+﻿@page "/Login"
+
+@inject NavigationManager NavigationManager;
+
+<div class="login" @onmousemove="MouseMoved">
+    <div class="login__container" style="@_mousePosStyling">
+
+        @switch (_stage)
+        {
+            case "login":
+                <LoginForm CreateUser="ToCreateUser"></LoginForm>
+                break;
+            case "newUser":
+                <NewUser></NewUser>
+                break;
+            default:
+                <div class="information">
+                    <p class="title">Oops!</p>
+                    <p class="heading">Something went wrong...</p>
+                    <p class="description">An unexpected problem occured, try again later.</p>
+                    <div class="buttons">
+                        <button @onclick='() => NavigationManager.NavigateTo("login", true)'>Try again.</button>
+                    </div>
+                </div>
+                break;
+        }
+
+    </div>
+</div>
+
+@code {
+
+    private string? _stage = "login";
+
+    private void ToCreateUser()
+    {
+        _stage = "newUser";
+    }
+
+    private string? _mousePosStyling;
+
+    private void MouseMoved(MouseEventArgs e)
+    {
+        _mousePosStyling = $"--mousePosX: {e.ClientX}px; --mousePosY: {e.ClientY}px";
+    }
+    
+}
