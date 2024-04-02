@@ -1,9 +1,22 @@
-﻿@use "../abstracts" as *;
-@use "typography" as *;
-@use "../themes" as themes;
+﻿@use "typography" as *;
 
 html {
+    --scrollbarBG: var(--text10);
+    --thumbBG: var(--text25);
+
     scroll-padding-top: 60px;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+
+    &::-webkit-scrollbar-track,
+    body::-webkit-scrollbar-track {
+        background: var(--scrollbarBG);
+    }
+
+    &::-webkit-scrollbar-thumb,
+    body::-webkit-scrollbar-thumb {
+        background-color: var(--thumbBG);
+    }
 }
 
 html, body {
@@ -15,11 +28,10 @@ html, body {
 
 img, svg {
     font-style: italic;
+    shape-margin: 1rem;
 
     background-repeat: no-repeat;
     background-size: cover;
-
-    shape-margin: 1rem;
 
     max-width: 100%;
     height: auto;
@@ -41,29 +53,39 @@ a {
     }
 }
 
+.information {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-
-    td, th {
-        padding: .5em;
-        border: 1px solid var(--text10);
-        text-align: left;
+    .title {
+        font-size: $h3;
+        margin: 0;
     }
 
-    th {
-        background-color: var(--accent75);
-        color: map-get(themes.$light, text);
+    .heading {
+        font-size: $h4;
+        margin: 0;
     }
 
-    tr {
-        &:nth-of-type(odd) {
-            background-color: var(--text5);
-        }
+    .buttons {
+        place-self: center;
+        margin-top: 1em;
+    }
+}
 
-        &:hover {
-            background-color: var(--text10);
-        }
+.not_found {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+        margin-bottom: .25em;
+    }
+
+    .heading {
+        font-size: $h5;
+        margin-bottom: 1.5em;
     }
 }
