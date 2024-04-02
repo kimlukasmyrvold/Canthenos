@@ -1,0 +1,18 @@
+﻿<img class="brand_component__logo" src="favicon-dark.ico" alt="logo">
+<script defer>
+    function init() {
+        const MatchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+        MatchMedia.addEventListener("change", ColorSchemeChanged);
+        ColorSchemeChanged();
+    }
+    
+    function ColorSchemeChanged() {
+        const Scheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        const Logos = document.querySelectorAll(".brand_component__logo");
+        Logos.forEach(logo => {
+            logo.src = `favicon-${Scheme}.ico`;
+        });
+    }
+    
+    setTimeout(init, 500);
+</script>
