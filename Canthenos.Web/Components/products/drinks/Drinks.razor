@@ -1,0 +1,93 @@
+﻿@using Canthenos.DataAccessLibrary.Models
+@using Canthenos.DataAccessLibrary
+@using System.Runtime.InteropServices
+
+@inject IDrinksData Db
+
+<div class="products">
+
+    <div class="products__container">
+        <div class="products__container__aside">
+            <p class="products__container__aside__title">Drinks</p>
+
+            <div class="products__container__aside__options">
+
+                <div class="products__container__aside__options__category">
+                    <Dropdown Placeholder="Category" Options="_categoryOptions" Chosen="@CategoryOption"></Dropdown>
+                </div>
+                <div class="products__container__aside__options__sort_by">
+                    <Dropdown Placeholder="Sort By" Options="_sortByOptions" Chosen="@SortyByOption"></Dropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="products__container__content">
+            @if (_drinks is null)
+            {
+                <p>
+                    <em>Loading...</em>
+                </p>
+            }
+            else
+            {
+                @foreach (var drink in _drinks)
+                {
+                    <Drink Image="@drink.ImagePath" Name="@drink.Name" Flavor="@drink.Flavor" Volume="@drink.VolumeMl" Price="@drink.Price" Bought=""></Drink>
+                }
+            }
+        </div>
+
+    </div>
+</div>
+
+@code {
+
+    private Dictionary<int, string> _sortByOptions = new()
+    {
+        { 0, "Popularity" },
+        { 1, "Price (Low to High)" },
+        { 2, "Price (High to Low)" },
+        { 3, "Name (A to Z)" },
+        { 4, "Name (Z to A)" }
+    };
+
+    private int _sortBySelected;
+
+    private async Task SortyByOption(int option)
+    {
+        _sortBySelected = option;
+        await UpdateDrinks();
+    }
+
+
+    private Dictionary<int, string>? _categoryOptions;
+    private int _categorySelected;
+
+    private async Task CategoryOption(int option)
+    {
+        _categorySelected = option;
+        await UpdateDrinks();
+    }
+
+    private List<DrinksModel>? _drinks;
+    private List<DrinkTypesModel>? _drinkTypes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _drinks = await Db.GetDrinks();
+        _drinkTypes = await Db.GetDrinkTypes();
+
+        _categoryOptions = new Dictionary<int, string> { { 0, "All" } };
+
+        foreach (var type in _drinkTypes)
+        {
+            _categoryOptions.Add(type.DrinkTypeId, type.Name!);
+        }
+    }
+
+    private async Task UpdateDrinks()
+    {
+        _drinks = await Db.GetDrinks(_categorySelected, _sortBySelected);
+    }
+
+}

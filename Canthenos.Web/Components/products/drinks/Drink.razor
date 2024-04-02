@@ -1,0 +1,40 @@
+﻿<div class="product">
+
+    <div class="product__image">
+        <img src="images/@Image" alt="Image of @Name" loading="lazy">
+    </div>
+
+    <div class="product__bottom">
+        <div class="product__bottom__item">
+            <p class="name">@Name</p>
+            <div class="product__bottom__item__info">
+                @if (Flavor is not null)
+                {
+                    <p class="flavor">@Flavor</p>
+                }
+                <p class="volume">@(Volume)ml</p>
+            </div>
+        </div>
+
+        <div class="product__bottom__price">
+            <p class="price">@(string.IsNullOrEmpty(Price) ? "N/A" : Price) @(string.IsNullOrEmpty(Currency) ? "kr" : Currency)</p>
+        </div>
+
+        <div class="product__bottom__stats">
+            <p>Bought @(string.IsNullOrEmpty(Bought) ? 0 : int.Parse(Bought) > 999 ? "999+" : Bought) times</p>
+        </div>
+    </div>
+
+</div>
+
+@code {
+
+    [Parameter] public string? Image { get; set; }
+    [Parameter] public string? Name { get; set; }
+    [Parameter] public string? Flavor { get; set; }
+    [Parameter] public string? Volume { get; set; }
+    [Parameter] public string? Price { get; set; }
+    [Parameter] public string? Currency { get; set; }
+    [Parameter] public string? Bought { get; set; }
+
+}
