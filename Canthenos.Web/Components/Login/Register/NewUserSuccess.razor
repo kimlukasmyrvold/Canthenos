@@ -1,0 +1,18 @@
+﻿<div class="login__container__form information">
+    <p class="title">Success</p>
+    <p class="description">User has been successfully created.</p>
+    <div class="login__container__form__submitField buttons">
+        <button @onclick="ToLogin">Go to dashboard</button>
+    </div>
+</div>
+
+@inject NavigationManager NavigationManager;
+
+@code {
+
+    private void ToLogin()
+    {
+        NavigationManager.NavigateTo("dashboard", true);
+    }
+
+}

@@ -1,0 +1,72 @@
+﻿@using Canthenos.Web.Models
+@inject NavigationManager NavigationManager;
+
+<div class="login__container__form">
+    <div class="login__container__form__hero">
+        <p class="title">Confirm your details</p>
+        <p class="description">Make sure the name, username and password is correct before confirming</p>
+    </div>
+
+    <div class="login__container__form__viewField">
+        <div class="login__container__form__viewField__field">
+            <label for="firstName">First Name:</label>
+            <input class="input" type="text" id="firstName" value="@FirstName" readonly/>
+        </div>
+
+        <div class="login__container__form__viewField__field">
+            <label for="lastName">Last Name:</label>
+            <input class="input" type="text" id="lastName" value="@LastName" readonly/>
+        </div>
+
+        <div class="login__container__form__viewField__field">
+            <label for="username">Username:</label>
+            <input class="input" type="text" id="username" value="@Username" readonly/>
+        </div>
+
+        <div class="login__container__form__viewField__field">
+            <label for="password">Password:</label>
+            <input class="input" type="@InputType" id="password" value="@Password" readonly/>
+        </div>
+
+        <PasswordToggle OnTogglePasswordVisibility="TogglePasswordVisibility"></PasswordToggle>
+    </div>
+
+    <div class="login__container__form__submitField">
+        <button class="button-cancel" type="reset" @onclick='() => NavigationManager.NavigateTo("login", true)'>Cancel</button>
+        <button type="submit" @onclick="Submit">Confirm</button>
+    </div>
+</div>
+
+@code {
+
+    private bool _showPassword = false;
+    private string InputType => _showPassword ? "text" : "password";
+
+    private Task TogglePasswordVisibility(bool showPassword)
+    {
+        _showPassword = showPassword;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    [Parameter] public EventCallback OnValidSubmit  { get; set; }
+
+    [Parameter] public string? FirstName { get; set; }
+    [Parameter] public string? LastName { get; set; }
+    [Parameter] public string? Username { get; set; }
+    [Parameter] public string? Password { get; set; }
+
+    private async Task Submit()
+    {
+        if (string.IsNullOrEmpty(FirstName) || string.IsNullOrEmpty(LastName) || string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+        {
+            Console.WriteLine("Error, params cannot be null.");
+            return;
+        }
+
+        Console.WriteLine($"FirstName: {FirstName} LastName: {LastName} Username: {Username} Password: {Password}");
+        
+        await OnValidSubmit.InvokeAsync();
+    }
+
+}

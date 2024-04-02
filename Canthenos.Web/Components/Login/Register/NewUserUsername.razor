@@ -1,0 +1,94 @@
+﻿@using Canthenos.Web.Models
+@inject NavigationManager NavigationManager;
+
+<EditForm Model="@_new" OnValidSubmit="@Submit" class="login__container__form">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    <div class="login__container__form__hero">
+        <p class="title">Choose your username</p>
+        <p class="description">Choose one of the usernames below or create your own</p>
+    </div>
+
+    <div class="login__container__form__inputField">
+        <InputRadioGroup Name="Username" @bind-Value="_new.SelectedOption">
+
+            <div class="login__container__form__inputField__input">
+                <div class="login__container__form__inputField__input__group">
+                    <InputRadio Name="Username" id="option1" Value="_option1"></InputRadio>
+                    <label for="option1">@_option1</label>
+                </div>
+            </div>
+
+            <div class="login__container__form__inputField__input">
+                <div class="login__container__form__inputField__input__group">
+                    <InputRadio Name="Username" id="option2" Value="_option2"></InputRadio>
+                    <label for="option2">@_option2</label>
+                </div>
+            </div>
+
+
+            <div class="login__container__form__inputField__input custom_username">
+                <div class="login__container__form__inputField__input__group">
+                    <InputRadio Name="Username" id="createYouOwn" Value="_custom"></InputRadio>
+                    <label for="createYouOwn">Create your own</label>
+                </div>
+
+                @if (_new.SelectedOption == "custom")
+                {
+                    <InputText id="username" @bind-Value="_new.Username" placeholder="Username"></InputText>
+                    <ValidationMessage For="@(() => _new.Username)"></ValidationMessage>
+                }
+            </div>
+
+            <ValidationMessage For="@(() => _new.SelectedOption)"></ValidationMessage>
+
+        </InputRadioGroup>
+    </div>
+
+    <div class="login__container__form__submitField">
+        <button class="button-cancel" type="reset" @onclick='() => NavigationManager.NavigateTo("login", true)'>Back</button>
+        <button type="submit">Next</button>
+    </div>
+</EditForm>
+
+@code {
+
+    [Parameter] public EventCallback<string> OnValidSubmit { get; set; }
+
+    [Parameter] public string FirstName { get; set; } = string.Empty;
+    [Parameter] public string LastName { get; set; } = string.Empty;
+
+    private string? _option1;
+    private string? _option2;
+    private string? _custom = "custom";
+
+    protected override void OnInitialized()
+    {
+        var first = FirstName.ToLower().Replace(" ", "");
+        var last = LastName.ToLower().Replace(" ", "");
+
+        _option1 = $"{(first.Length > 2 ? first[..3] : first)}{(last.Length > 3 ? last[..3] : last)}";
+        _option2 = $"{first}{last}";
+    }
+
+
+    private readonly NewUserModelUsername _new = new();
+
+    private async Task Submit()
+    {
+        ArgumentNullException.ThrowIfNull(_new.SelectedOption);
+        if (_new.SelectedOption == "custom")
+        {
+            ArgumentNullException.ThrowIfNull(_new.Username);
+        }
+        else
+        {
+            _new.Username = _new.SelectedOption;
+        }
+
+        Console.WriteLine($"_selectedOption: {_new.SelectedOption} Username: {_new.Username}");
+
+        await OnValidSubmit.InvokeAsync(_new.Username);
+    }
+
+}

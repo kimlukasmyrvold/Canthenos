@@ -1,0 +1,70 @@
+﻿@using Canthenos.Web.Models
+@inject NavigationManager NavigationManager;
+
+@switch (_stage)
+{
+    case 1:
+        <NewUserName OnValidSubmit="@ToUsername"></NewUserName>
+        break;
+    case 2:
+        <NewUserUsername OnValidSubmit="@ToPassword" FirstName="@User.FirstName" LastName="@User.LastName"></NewUserUsername>
+        break;
+    case 3:
+        <NewUserPassword OnValidSubmit="@ToConfirm"></NewUserPassword>
+        break;
+    case 4:
+        <NewUserConfirm OnValidSubmit="@CreateUser" FirstName="@User.FirstName" LastName="@User.LastName" Username="@User.Username" Password="@User.Password"></NewUserConfirm>
+        break;
+    case 5:
+        <NewUserSuccess></NewUserSuccess>
+        break;
+    default:
+        <div class="information">
+            <p class="title">Oops!</p>
+            <p class="heading">Something went wrong...</p>
+            <p class="description">An unexpected problem occured, try again later.</p>
+            <div class="buttons">
+                <button @onclick='() => NavigationManager.NavigateTo("login", true)'>Try again.</button>
+            </div>
+        </div>
+        break;
+}
+
+@code {
+
+    public class User
+    {
+        public static string? FirstName { get; set; }
+        public static string? LastName { get; set; }
+        public static string? Username { get; set; }
+        public static string? Password { get; set; }
+    }
+
+    private int _stage = 1;
+
+    private void ToUsername((string FirstName, string LastName) data)
+    {
+        User.FirstName = data.FirstName;
+        User.LastName = data.LastName;
+        _stage = 2;
+    }
+
+    private void ToPassword(string username)
+    {
+        User.Username = username;
+        _stage = 3;
+    }
+
+    private void ToConfirm(string password)
+    {
+        User.Password = password;
+        _stage = 4;
+    }
+
+    private void CreateUser()
+    {
+        Console.WriteLine("Stage 4!!");
+        _stage = 5;
+    }
+
+}

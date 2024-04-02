@@ -1,0 +1,48 @@
+﻿@using Canthenos.Web.Models
+@using System.ComponentModel.DataAnnotations
+
+@inject NavigationManager NavigationManager;
+
+<EditForm Model="@_new" OnValidSubmit="@Submit" class="login__container__form">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    <div class="login__container__form__hero">
+        <p class="title">Create new user</p>
+        <p class="description">Type in your first and last name here</p>
+    </div>
+
+    <div class="login__container__form__inputField">
+        <div class="login__container__form__inputField__input">
+            <InputText id="firstName" placeholder="First name" @bind-Value="_new.FirstName"></InputText>
+            <ValidationMessage For="@(() => _new.FirstName)"></ValidationMessage>
+        </div>
+
+        <div class="login__container__form__inputField__input">
+            <InputText id="lastName" @bind-Value="_new.LastName" placeholder="Last name"></InputText>
+            <ValidationMessage For="@(() => _new.LastName)"></ValidationMessage>
+        </div>
+    </div>
+
+    <div class="login__container__form__submitField">
+        <button class="button-cancel" type="reset" @onclick='() => NavigationManager.NavigateTo("login", true)'>Cancel</button>
+        <button type="submit">Next</button>
+    </div>
+</EditForm>
+
+@code {
+
+    private readonly NewUserModelName _new = new();
+
+    [Parameter] public EventCallback<(string FirstName, string LastName)> OnValidSubmit  { get; set; }
+
+    private async Task Submit()
+    {
+        ArgumentNullException.ThrowIfNull(_new.FirstName);
+        ArgumentNullException.ThrowIfNull(_new.LastName);
+
+        Console.WriteLine($"First Name: {_new.FirstName} Last Name: {_new.LastName}");
+
+        await OnValidSubmit.InvokeAsync((_new.FirstName, _new.LastName));
+    }
+
+}
