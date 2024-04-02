@@ -1,0 +1,121 @@
+﻿@using Canthenos.Web.Models
+@using Canthenos.Login
+
+@inject NavigationManager NavigationManager
+@inject IPassword Passwords
+@inject IJSRuntime JsRuntime
+
+<EditForm Model="@_login" OnValidSubmit="@Submit" OnInvalidSubmit="@InvalidSubmit" class="login__container__form" data-iserror="@_isError.ToString()">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+
+    @if (_loading)
+    {
+        <Loading></Loading>
+    }
+
+    <div class="login__container__form__hero">
+        <p class="title">Login</p>
+        <p class="description">Login with your username and password.</p>
+    </div>
+
+    <div class="login__container__form__inputField">
+        <div class="login__container__form__inputField__input">
+            <InputText @bind-Value="_login.Username" @onkeydown="KeyPressed" placeholder="Username" class="@(_isError ? "invalid" : "valid")"></InputText>
+        </div>
+
+        <div class="login__container__form__inputField__input">
+            <InputText Type="@InputType" @bind-Value="_login.Password" @onkeydown="KeyPressed" placeholder="Password" class="@(_isError ? "invalid" : "valid")"></InputText>
+        </div>
+
+        @if (_isError)
+        {
+            <div class="login__container__form__inputField__error">
+                <p class="login__container__form__inputField__error__message">@_errorMsg</p>
+            </div>
+        }
+
+        <PasswordToggle OnTogglePasswordVisibility="TogglePasswordVisibility"></PasswordToggle>
+    </div>
+
+    <div class="login__container__form__notice">
+        <p>Not your computer? Use a Private Window to sign in.</p>
+    </div>
+
+    <div class="login__container__form__submitField">
+        <button @onclick="ToRegister" type="button" class="button-secondary">Register</button>
+        <button type="submit">Login</button>
+    </div>
+</EditForm>
+
+
+@code {
+
+    private bool _loading = true;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await HandleLogin();
+        }
+    }
+
+    private async Task HandleLogin()
+    {
+        var (loggedIn, roleId) = await Passwords.LoggedIn();
+        if (loggedIn) NavigationManager.NavigateTo("dashboard", true);
+        else _loading = false;
+        StateHasChanged();
+    }
+
+    private bool _showPassword = false;
+    private string InputType => _showPassword ? "text" : "password";
+
+    private Task TogglePasswordVisibility(bool showPassword)
+    {
+        _showPassword = showPassword;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private bool _isError;
+    private string? _errorMsg;
+
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+    [Parameter] public EventCallback CreateUser { get; set; }
+
+    private readonly LoginModel _login = new();
+
+    private async Task Submit()
+    {
+        _loading = true;
+
+        ArgumentNullException.ThrowIfNull(_login.Username);
+        ArgumentNullException.ThrowIfNull(_login.Password);
+
+        var (result, errorMessage, roleId) = await Passwords.Login(_login.Username, _login.Password);
+        _loading = false;
+        if (result) NavigationManager.NavigateTo("dashboard", true);
+
+        _isError = true;
+        _errorMsg = errorMessage ?? "Wrong username or password";
+    }
+
+    private void InvalidSubmit()
+    {
+        _isError = true;
+        _errorMsg = "You must fill in all fields";
+    }
+
+    private void KeyPressed(KeyboardEventArgs e)
+    {
+        _isError = false;
+        _errorMsg = "";
+    }
+
+    private async Task ToRegister()
+    {
+        await CreateUser.InvokeAsync();
+    }
+
+}
