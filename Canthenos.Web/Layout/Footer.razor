@@ -27,7 +27,9 @@
                     </span>
                 </p>
                 <p class="footer__container__content__bottom__open_source">This website is open-source, check out the code here: <a href="https://github.com/kimlukasmyrvold/Canthenos" target="_blank">GitHub</a></p>
-                <small class="footer__container__content__bottom__version"><a href="@CurrentVersionLink" target="_blank">Version: @CurrentVersion</a></small>
+                <small class="footer__container__content__bottom__version">
+                    <a href="@CurrentVersionLink" target="_blank">Version: @CurrentVersion</a>
+                </small>
             </div>
 
         </div>
@@ -40,9 +42,12 @@
     private string? CurrentVersion { get; set; }
     private string? CurrentVersionLink { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (!firstRender) return;
+        
         (CurrentVersionLink, CurrentVersion) = await GithubData.GetLatestVersion();
+        StateHasChanged();
     }
 
 }
