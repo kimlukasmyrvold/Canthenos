@@ -11,8 +11,10 @@ builder.Services.AddTransient<IPassword, Password>();
 
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 
-builder.Services.AddTransient<IGithubData, GithubData>();
 builder.Services.AddTransient<ICookies, Cookies>();
+builder.Services.AddTransient<ISessionStorage, SessionStorage>();
+builder.Services.AddTransient<ILocalStorage, LocalStorage>();
+builder.Services.AddTransient<IGithubData, GithubData>();
 
 builder.Services.AddTransient<IUsersData, UsersData>();
 builder.Services.AddTransient<IMenusData, MenusData>();
