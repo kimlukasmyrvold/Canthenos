@@ -6,7 +6,7 @@ The format for this file is based on [Keep a Changelog](https://keepachangelog.c
 and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).<br>
 Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-format.html) of `YYYY-MM-DD`.
 
-## [Unreleased]
+## [0.3.1] - 2024-04-06
 
 Minor update
 
@@ -117,7 +117,8 @@ This release makes the site actually connect to a database. It also brings in so
 - README file
 - GPL3.0 license 
 
-[unreleased]: https://github.com/kimlukasmyrvold/Canthenos/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/kimlukasmyrvold/Canthenos/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.3.1
 [0.3.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.3.0
 [0.2.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.2.0
 [0.1.0]: https://github.com/kimlukasmyrvold/Canthenos/releases/tag/v0.1.0
