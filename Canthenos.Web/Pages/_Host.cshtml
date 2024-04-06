@@ -8,6 +8,7 @@
 <component type="typeof(App)" render-mode="ServerPrerendered"/>
 
 <script>
+
     window.WriteCookie = {
         WriteCookie: function (name, value, expires) {
             document.cookie = `${name} = ${value}; expires = ${new Date(expires).toUTCString()}; path=/; SameSite=Strict; Secure"`;
@@ -34,7 +35,49 @@
         }
     }
     
+    
+    window.SessionStorage = {        
+        get: function (key) {
+            return window.sessionStorage.getItem(key);
+        },
+        
+        set: function (key, value) {
+            window.sessionStorage.setItem(key, value)
+        },
+
+        remove: function (key)
+        {
+            window.sessionStorage.removeItem(key);
+        },
+        
+        clear: function () {
+            window.sessionStorage.clear();
+        }
+    }  
+
+    
+    window.LocalStorage = {        
+        get: function (key) {
+            return window.localStorage.getItem(key);
+        },
+        
+        set: function (key, value) {
+            window.localStorage.setItem(key, value)
+        },
+
+        remove: function (key)
+        {
+            window.localStorage.removeItem(key);
+        },
+        
+        clear: function () {
+            window.localStorage.clear();
+        }
+    }
+    
+    
     window.getUserAgent = () => {
         return navigator.userAgent;
-    };
+    }
+    
 </script>
