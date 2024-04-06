@@ -2,5 +2,5 @@
 
 public interface IGithubData
 {
-    Task<(string, string)> GetLatestVersion();
+    Task<(string url, string version)> GetLatestVersion();
 }
