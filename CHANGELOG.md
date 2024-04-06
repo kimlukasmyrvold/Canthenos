@@ -8,7 +8,13 @@ Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-
 
 ## [Unreleased]
 
-Nothing unreleased yet
+Minor update
+
+### Added
+
+- Check for when github version was last checked (should help prevent overloading the api)
+- methods for accessing localstorage
+- methods for accessing sessionstorage
 
 ## [0.3.0] - 2024-04-02
 
