@@ -1,5 +1,11 @@
 ﻿@use "typography" as *;
 
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
 html {
     --scrollbarBG: var(--text10);
     --thumbBG: var(--text25);
@@ -24,6 +30,7 @@ html, body {
     color: var(--text);
     font-family: $fm;
     font-size: $p;
+    margin: 0;
 }
 
 img, svg {
@@ -52,6 +59,13 @@ a {
         opacity: .6;
     }
 }
+
+
+.visually_hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
 
 .information {
     display: flex;
