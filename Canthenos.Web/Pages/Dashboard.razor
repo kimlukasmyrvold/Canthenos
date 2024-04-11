@@ -12,6 +12,28 @@
         <h3>Dashboard</h3>
         <p>Congratulations, you are logged in!</p>
     </div>
+
+    <form>
+        <h5>Create new menu</h5>
+
+        <div>
+            <label>
+                <p>Name</p>
+                <input type="text">
+            </label>
+            
+            <label>
+                <p>Image path</p>
+                <input type="text">
+            </label>
+        </div>
+
+        <br>
+
+        <div>
+            <button type="button">Submit</button>
+        </div>
+    </form>
 }
 
 
@@ -21,14 +43,8 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
-        {
-            await HandleLogin();
-        }
-    }
+        if (!firstRender) return;
 
-    private async Task HandleLogin()
-    {
         var (loggedIn, roleId) = await Passwords.LoggedIn();
         _isLoggedIn = loggedIn;
         if (!_isLoggedIn) NavigationManager.NavigateTo("login", true);
