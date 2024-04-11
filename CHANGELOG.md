@@ -6,6 +6,20 @@ The format for this file is based on [Keep a Changelog](https://keepachangelog.c
 and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).<br>
 Dates use the [ISO 8601 date format](https://www.iso.org/iso-8601-date-and-time-format.html) of `YYYY-MM-DD`.
 
+## [Unreleased]
+
+### Added
+- all styling inside _reset.scss file to _base.scss
+- visually hidden class
+
+### Changed
+- focus on page load from h1 tag to main tag
+
+### Removed
+- _reset.scss file
+
+
+
 ## [0.3.1] - 2024-04-06
 
 Minor update
